@@ -1,7 +1,6 @@
 # TODO 1: ajouter les directives generales
 # https://github.com/actions/starter-workflows/blob/main/ci/rust.yml
 
-
 name: Rust
 
 on:
