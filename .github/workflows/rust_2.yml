@@ -5,7 +5,7 @@ name: Rust 2
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ "main" ]
   pull_request:
     branches: [ $default-branch ]
 
