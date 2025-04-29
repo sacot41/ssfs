@@ -1,7 +1,6 @@
 # TODO 1: ajouter les directives generales
 # https://github.com/actions/starter-workflows/blob/main/ci/rust.yml
 
-
 name: Rust
 
 on:
@@ -46,19 +45,22 @@ jobs:
       # TODO 5: donner le bon nom pour l'artefact
       # https://github.com/CycloneDX/cyclonedx-rust-cargo/blob/main/cargo-cyclonedx/README.md
       # https://github.com/actions/upload-artifact#usage
-      # - name: Upload SBOM as artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: sbom
-      #     path: 
+      - name: Upload SBOM as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path:  ./build
 
   trufflehog:
     name: TruffleHog
     runs-on: ubuntu-latest
     # TODO 6: ajouter la tache de trufflehog
     # https://github.com/trufflesecurity/trufflehog#octocat-trufflehog-github-action
-    # steps:
-    # - name: Checkout code
-    # - name: Secret Scanning
-    #   with:
-    #     head: ${{ github.ref_name }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with: 
+          fetch-depth: 0
+    - name: Secret Scanning
+      with:
+        head: ${{ github.ref_name }}
